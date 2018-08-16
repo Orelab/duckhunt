@@ -10,8 +10,6 @@ require "inc/header.php";
 $dbh = db_connect($cfg);
 
 
-$response = $dbh->query('SELECT * FROM report;');
-
 
 $titles = [
 	"where" => "Place",
@@ -19,15 +17,9 @@ $titles = [
 	"howmany" => "Number"
 ];
 
-$data = $response->fetchAll();
+$data = $dbh->query('SELECT * FROM report')->fetchAll();
 
 echo array2html( $titles, $data );
-
-
-
-$response->closeCursor();
-
-
 
 
 

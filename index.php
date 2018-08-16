@@ -43,10 +43,10 @@ if($_GET['success']): ?>
 
 			<form action="save.php" method="post">
 				<div class="form-group">
-					<label for="where">Where</label>
+					<label for="where">Where did you see these ducks ?</label>
 					<input  id="where"type="text" name="where" value="" class="form-control" />
 					<small id="whereHelp" class="form-text text-muted">
-						Where did you see these targets ?</small>
+						Please, fill a place</small>
 
 						<?php
 							if($_GET['where']){
@@ -56,13 +56,13 @@ if($_GET['success']): ?>
 				</div>
 
 				<div class="form-group">
-					<label for="when">When</label>
+					<label for="when">When did you see them ?</label>
 					<input id="when" type="datetime" name="when" value="" class="form-control" />
 					<span class="input-group-addon">
 						<span class="glyphicon glyphicon-calendar"></span>
 					</span>
 					<small id="whenHelp" class="form-text text-muted">
-						When did you saw them ?</small>
+						Just click the date and time bellow...</small>
 
 						<?php
 							if($_GET['when']){
@@ -72,12 +72,12 @@ if($_GET['success']): ?>
 				</div>
 
 				<div class="form-group">
-					<label for="howmany">How many</label>
+					<label for="howmany">How many of them are invading us ?</label>
 					<input id="howmany" type="range" min="1" max="50"
 						name="howmany" value="1" class="form-control" />
 					<h3 id="selected-range">1</h3>
 					<small id="howmanyHelp" class="form-text text-muted">
-						How many of these are still alive ?</small>
+						Slide the cursor until the number is correct !</small>
 
 
 						<?php

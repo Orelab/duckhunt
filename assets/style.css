@@ -4,6 +4,10 @@ header h2 {
 	display: block;
 }
 
+label {
+	font-weight: bold !important;
+	font-size: 1.5em !important;
+}
 
 footer {
 	text-align: center;

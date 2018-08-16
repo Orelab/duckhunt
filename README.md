@@ -4,6 +4,7 @@
 
 ## Installation
 
+configure inc/configuration.php
 npm install
 
 
