@@ -1,0 +1,11 @@
+
+header h1,
+header h2 {
+	display: block;
+}
+
+
+footer {
+	text-align: center;
+	margin: 50px;
+}
