@@ -5,7 +5,7 @@ body {
 
 header h1,
 header h2,
-p {
+header p {
 	display: block;
 	color: rgba(255,255,255,.5);
 }

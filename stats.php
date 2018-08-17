@@ -9,6 +9,10 @@ require "inc/header.php";
 
 $dbh = db_connect($cfg);
 
+
+
+//-- map & list
+
 $titles = [
 	"latitude" => "Latitude",
 	"longitude" => "Longitude",
@@ -18,8 +22,22 @@ $titles = [
 ];
 
 $data = $dbh->query('SELECT * FROM report')->fetchAll();
-$data = extends_data($data);	// see functions.php
+$data = extends_data($data);	// => functions.php
 
+
+
+//-- stats
+
+$sql = '
+	SELECT
+		`when` AS day,
+		sum(`howmany`) AS `total_ducks`,
+		count(`id`) AS `num_rows`
+	FROM `report`
+	GROUP BY DAY(`when`);
+';
+
+$stats = $dbh->query($sql)->fetchAll();
 
 ?>
 
@@ -46,9 +64,20 @@ $data = extends_data($data);	// see functions.php
 		</div>
 
 		<div class="tab-pane fade" id="stats-panel" role="tabpanel">
-			<p>here an array containing the following datas for each day !</p>
-			<p>tot ducks</p>
-			<p>tot rows</p>
+			<table class="table">
+				<tr>
+					<th>Day</th>
+					<th>Total reports</th>
+					<th>Total ducks reported</th>
+				</tr>
+				<?php foreach( $stats as $s ): ?>
+				<tr>
+					<td><?=date('d/m/Y', strtotime($s['day']))?></td>
+					<td><?=$s['num_rows']?></td>
+					<td><?=$s['total_ducks']?></td>
+				</tr>
+				<?php endforeach ?>
+			</table>
 		</div>
 
 		<div class="tab-pane fade" id="list-panel" role="tabpanel">

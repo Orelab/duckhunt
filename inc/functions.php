@@ -17,7 +17,11 @@ function db_connect( $cfg )
 }
 
 
-
+/*
+	This function calculates somes additional fields :
+		- day & hour (according to datetime)
+		- HTML block 'place' (build with latitude & longitude)
+*/
 function extends_data( $data )
 {
 	foreach( $data as &$d )
