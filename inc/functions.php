@@ -18,6 +18,24 @@ function db_connect( $cfg )
 
 
 
+function extends_data( $data )
+{
+	foreach( $data as &$d )
+	{
+		// adding "day" & "hour" values
+
+		$d['day'] = date('d/m/Y', strtotime($d['when']));
+		$d['hour'] = date('H:i', strtotime($d['when']));
+
+		// adding a beautyfull location field ;)
+
+		$map = '<div class="place" data-lat="%s" data-lon="%s"></div>';
+		$d['place'] = sprintf($map, $d['latitude'], $d['longitude']);
+	}
+	return $data;
+}
+
+
 /*
 	This function converts a PHP array in HTML array
 	 - $titles : a key/val array of titles

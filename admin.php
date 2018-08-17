@@ -1,7 +1,7 @@
 <?php
 
 $title = "The admin place";
-$link = "index";
+$link = "stats";
 
 require "inc/functions.php";
 require "inc/header.php";
@@ -17,20 +17,7 @@ $titles = [
 ];
 
 $data = $dbh->query('SELECT * FROM report')->fetchAll();
-
-
-foreach( $data as &$d )
-{
-	// adding "day" & "hour" values
-
-	$d['day'] = date('d/m/Y', strtotime($d['when']));
-	$d['hour'] = date('H:i', strtotime($d['when']));
-
-	// adding a beautyfull location field ;)
-
-	$map = '<div class="place" data-lat="%s" data-lon="%s"></div>';
-	$d['place'] = sprintf($map, $d['latitude'], $d['longitude']);
-}
+$data = extends_data($data);	// see functions.php
 
 echo array2html( $titles, $data );
 

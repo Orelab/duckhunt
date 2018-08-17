@@ -61,23 +61,50 @@ $(document).ready(function()
 		Leaflet, the admin part
 	*/
 
-	$('.place').each(function(){
+	$('.place').each(function()
+	{
 		var lat = $(this).data('lat');
 		var lon = $(this).data('lon');
 		var map = L.map(this).setView([lat, lon], 11);
 		var marker;
 
-		L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{ext}', {
+		L.tileLayer('http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
 			attribution: '',
-			subdomains: 'abcd',
-			minZoom: 1,
-			maxZoom: 16,
-			ext: 'png'
+			maxZoom: 18
 		}).addTo(map);
 
 		marker = L.marker( {lat:lat,lng:lon}, {draggable:true,icon:blueIcon} );
 		marker.addTo(map);
 	});
+
+
+
+
+	/*
+		Leaflet again, for stats
+	*/
+
+	$('#map_summary').each(function()
+	{
+		var map = L.map(this).setView([46.8162077, 2.6523104], 5);
+		var marker;
+
+		L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}', {
+			attribution: '',
+			maxZoom: 18
+		}).addTo(map);
+//console.log(poi);
+		for( var i=0 ; i<poi.length ; i++ )
+		{
+			marker = L.marker(
+				{lat:poi[i].latitude,lng:poi[i].longitude}, 
+				{draggable:false,icon:blueIcon}
+			);
+			marker.addTo(map);
+		}
+
+	});
+
 
 
 
