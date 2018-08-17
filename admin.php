@@ -10,7 +10,7 @@ require "inc/header.php";
 $dbh = db_connect($cfg);
 
 $titles = [
-	"where" => "Place",
+	"place" => "Location",
 	"day" => "Day",
 	"hour" => "Hour",
 	"howmany" => "Number"
@@ -25,6 +25,11 @@ foreach( $data as &$d )
 
 	$d['day'] = date('d/m/Y', strtotime($d['when']));
 	$d['hour'] = date('H:i', strtotime($d['when']));
+
+	// adding a beautyfull location field ;)
+
+	$map = '<div class="place" data-lat="%s" data-lon="%s"></div>';
+	$d['place'] = sprintf($map, $d['latitude'], $d['longitude']);
 }
 
 echo array2html( $titles, $data );

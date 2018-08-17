@@ -5,25 +5,29 @@ $(document).ready(function()
 
 	/*
 		Leaflet, a visual map to select the place
+		(the front part)
 	*/
 
-	var map = L.map('map').setView([43.6267463, 0.5836353], 11);
-	var marker;
+	if( $('#map').length )
+	{
+		var map = L.map('map').setView([43.6267463, 0.5836353], 11);
+		var marker;
 
-	L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{ext}', {
-		attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-		subdomains: 'abcd',
-		minZoom: 1,
-		maxZoom: 16,
-		ext: 'png'
-	}).addTo(map);
+		L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{ext}', {
+			attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+			subdomains: 'abcd',
+			minZoom: 1,
+			maxZoom: 16,
+			ext: 'png'
+		}).addTo(map);
 
-	map.on('click', function mapClickListen(e) {
-		if( ! marker ){
-			genMarker(e.latlng);
-			updateInputs(e.latlng);
-		}
-	});
+		map.on('click', function mapClickListen(e) {
+			if( ! marker ){
+				genMarker(e.latlng);
+				updateInputs(e.latlng);
+			}
+		});
+	}
 
 	var blueIcon = L.icon({
 	    iconUrl: 'node_modules/leaflet/dist/images/marker-icon.png',
@@ -48,6 +52,32 @@ $(document).ready(function()
 		$('input[name="latitude"]').val(e.lat);
 		$('input[name="longitude"]').val(e.lng);
 	}
+
+
+
+
+
+	/*
+		Leaflet, the admin part
+	*/
+
+	$('.place').each(function(){
+		var lat = $(this).data('lat');
+		var lon = $(this).data('lon');
+		var map = L.map(this).setView([lat, lon], 11);
+		var marker;
+
+		L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{ext}', {
+			attribution: '',
+			subdomains: 'abcd',
+			minZoom: 1,
+			maxZoom: 16,
+			ext: 'png'
+		}).addTo(map);
+
+		marker = L.marker( {lat:lat,lng:lon}, {draggable:true,icon:blueIcon} );
+		marker.addTo(map);
+	});
 
 
 

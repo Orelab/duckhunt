@@ -17,3 +17,8 @@ footer {
 #map {
 	height: 320px;
 }
+
+.place {
+	height: 120px;
+	background-color: grey;
+}
