@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Jeu 16 Août 2018 à 16:45
+-- Généré le :  Ven 17 Août 2018 à 10:22
 -- Version du serveur :  5.7.23-0ubuntu0.16.04.1
 -- Version de PHP :  7.2.8-1+ubuntu16.04.1+deb.sury.org+1
 
@@ -22,6 +22,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `report` (
   `id` int(11) NOT NULL,
+  `latitude` decimal(10,8) NOT NULL,
+  `longitude` decimal(10,8) NOT NULL,
   `where` text NOT NULL,
   `when` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `howmany` int(11) NOT NULL
@@ -45,4 +47,4 @@ ALTER TABLE `report`
 -- AUTO_INCREMENT pour la table `report`
 --
 ALTER TABLE `report`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
