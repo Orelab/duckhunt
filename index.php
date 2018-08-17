@@ -44,31 +44,31 @@ if($_GET['success']): ?>
 			<form action="save.php" method="post">
 				<div class="form-group">
 					<label for="where">Where did you see these ducks ?</label>
-					<input  id="where"type="text" name="where" value="" class="form-control" />
-					<small id="whereHelp" class="form-text text-muted">
-						Please, fill a place</small>
+					<input id="where" type="hidden" name="where" value="" class="form-control" />
 
-						<?php
-							if($_GET['where']){
-								echo '<div class="alert alert-danger">'.$_GET['where'].'</div>';
-							}
-						?>
+					<div id="map"></div>
+					<input type="hidden" name="latitude" value="" />
+					<input type="hidden" name="longitude" value="" />
+
+					<?php
+						if($_GET['where']){
+							echo '<div class="alert alert-danger">'.$_GET['where'].'</div>';
+						}
+					?>
 				</div>
 
 				<div class="form-group">
 					<label for="when">When did you see them ?</label>
-					<input id="when" type="datetime" name="when" value="" class="form-control" />
+					<input id="when" type="hidden" name="when" value="" class="form-control" />
 					<span class="input-group-addon">
 						<span class="glyphicon glyphicon-calendar"></span>
 					</span>
-					<small id="whenHelp" class="form-text text-muted">
-						Just click the date and time bellow...</small>
 
-						<?php
-							if($_GET['when']){
-								echo '<div class="alert alert-danger">'.$_GET['when'].'</div>';
-							}
-						?>
+					<?php
+						if($_GET['when']){
+							echo '<div class="alert alert-danger">'.$_GET['when'].'</div>';
+						}
+					?>
 				</div>
 
 				<div class="form-group">
@@ -76,15 +76,12 @@ if($_GET['success']): ?>
 					<input id="howmany" type="range" min="1" max="50"
 						name="howmany" value="1" class="form-control" />
 					<h3 id="selected-range">1</h3>
-					<small id="howmanyHelp" class="form-text text-muted">
-						Slide the cursor until the number is correct !</small>
 
-
-						<?php
-							if($_GET['howmany']){
-								echo '<div class="alert alert-danger">'.$_GET['howmany'].'</div>';
-							}
-						?>
+					<?php
+						if($_GET['howmany']){
+							echo '<div class="alert alert-danger">'.$_GET['howmany'].'</div>';
+						}
+					?>
 				</div>
 
 				<input type="submit" name="report" value="report !" class="btn btn-primary float-right" />

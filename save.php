@@ -12,14 +12,14 @@ require "inc/functions.php";
 $errors = [];
 
 
-if( ! $_POST['where'] )
+if( ! $_POST['latitude'] || ! $_POST['longitude']  )
 {
-	$errors['where'] = 'You did not write where you were...';
+	$errors['where'] = 'Please, click somewhere in the map !';
 }
 
 if( ! $_POST['when'] )
 {
-	$errors['when'] = 'You did not write when it was...';
+	$errors['when'] = 'Please, choose a correct date';
 }
 
 if( ! $_POST['howmany'] )
@@ -45,14 +45,15 @@ if( count($errors) )
 $dbh = db_connect($cfg);
 
 $sql = '
-	INSERT INTO report (`where`, `when`, `howmany`)
-	VALUES (:where, :when, :howmany);
+	INSERT INTO report (`latitude`, `longitude`, `when`, `howmany`)
+	VALUES (:latitude, :longitude, :when, :howmany);
 ';
 
 $stmt = $dbh->prepare($sql);
 
 $stmt->execute(array(
-	"where" => $_POST['where'],
+	"latitude" => $_POST['latitude'],
+	"longitude" => $_POST['longitude'],
 	"when" => $_POST['when'],
 	"howmany" => $_POST['howmany']
 ));

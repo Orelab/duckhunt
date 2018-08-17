@@ -6,15 +6,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+	<link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="node_modules/pc-bootstrap4-datetimepicker/build/css/bootstrap-datetimepicker.min.css">
+	<link rel="stylesheet" type="text/css" href="node_modules/leaflet/dist/leaflet.css">
+	<link rel="stylesheet" type="text/css" href="assets/style.css">
+
 	<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="node_modules/moment/min/moment.min.js"></script>
 	<script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="node_modules/pc-bootstrap4-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+	<script type="text/javascript" src="node_modules/leaflet/dist/leaflet.js"></script>
 	<script type="text/javascript" src="assets/app.js"></script>
-
-	<link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="node_modules/pc-bootstrap4-datetimepicker/build/css/bootstrap-datetimepicker.min.css">
-	<link rel="stylesheet" type="text/css" href="assets/style.css">
 
 </head>
 <body>

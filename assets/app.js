@@ -4,6 +4,54 @@ $(document).ready(function()
 
 
 	/*
+		Leaflet, a visual map to select the place
+	*/
+
+	var map = L.map('map').setView([43.6267463, 0.5836353], 11);
+	var marker;
+
+	L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{ext}', {
+		attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+		subdomains: 'abcd',
+		minZoom: 1,
+		maxZoom: 16,
+		ext: 'png'
+	}).addTo(map);
+
+	map.on('click', function mapClickListen(e) {
+		if( ! marker ){
+			genMarker(e.latlng);
+			updateInputs(e.latlng);
+		}
+	});
+
+	var blueIcon = L.icon({
+	    iconUrl: 'node_modules/leaflet/dist/images/marker-icon.png',
+	    shadowUrl: 'node_modules/leaflet/dist/images/marker-shadow.png',
+	    iconSize:     [25, 41],
+	    shadowSize:   [41, 41],
+	    iconAnchor:   [13, 41],
+	    shadowAnchor: [13, 41],
+	    popupAnchor:  [0, -30]
+	});
+
+	function genMarker(pos){
+		marker = L.marker( pos, {draggable:true,icon:blueIcon} );
+
+		marker.on('dragend', function(e) {
+			updateInputs( e.target._latlng );
+		});
+		marker.addTo(map);
+	}
+
+	function updateInputs(e){
+		$('input[name="latitude"]').val(e.lat);
+		$('input[name="longitude"]').val(e.lng);
+	}
+
+
+
+	/*
 		If there is a modal, we consider it is opened
 		by default, as it is a message from the server.
 	*/
@@ -19,9 +67,8 @@ $(document).ready(function()
 	*/
 
 	$('#howmany').on('mousemove', function(){
-		var value = $(this).val();
-		console.log(value);
-		$('#selected-range').html(value);
+		var num_duck = $(this).val();
+		$('#selected-range').html( num_duck );
 	});
 
 
@@ -32,7 +79,9 @@ $(document).ready(function()
 	$('#when').datetimepicker({
 		inline: true,
 		sideBySide: true,
-		format: 'YYYY/MM/DD HH:mm'
+		format: 'YYYY/MM/DD HH:mm',
+		keepOpen: false,
+		debug: true
 	});
 
 });

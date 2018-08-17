@@ -6,10 +6,14 @@ header h2 {
 
 label {
 	font-weight: bold !important;
-	font-size: 1.5em !important;
+	font-size: 2em !important;
 }
 
 footer {
 	text-align: center;
 	margin: 50px;
+}
+
+#map {
+	height: 320px;
 }
