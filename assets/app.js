@@ -32,7 +32,7 @@ $(document).ready(function()
 	$('#when').datetimepicker({
 		inline: true,
 		sideBySide: true,
-		format: 'YYYY/MM/DD hh:mm'
+		format: 'YYYY/MM/DD HH:mm'
 	});
 
 });
