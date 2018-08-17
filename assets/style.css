@@ -5,8 +5,10 @@ header h2 {
 }
 
 label {
-	font-weight: bold !important;
-	font-size: 2em !important;
+	display: block;
+	font-weight: bold;
+	font-size: 2em ;
+	text-align: center ;
 }
 
 footer {
@@ -22,3 +24,4 @@ footer {
 	height: 120px;
 	background-color: grey;
 }
+
